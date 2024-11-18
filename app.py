@@ -19,7 +19,7 @@ def create_model():
 # Создание модели и загрузка сохранённых весов
 model = create_model()
 try:
-    state_dict = torch.load('improved_model.pth', map_location=torch.device('cpu'))
+    state_dict = torch.load('improved_model_full.pth', map_location=torch.device('cpu'))
     model.load_state_dict(state_dict)
     model.eval()  # Перевод модели в режим оценки
     st.write("Model loaded successfully!")
