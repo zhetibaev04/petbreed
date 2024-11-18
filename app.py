@@ -5,6 +5,9 @@ from torchvision import transforms
 from PIL import Image
 import torch.nn as nn
 
+# Укажите путь к файлу модели
+MODEL_PATH = 'improved_model_full.pth'
+
 # Определение кастомной архитектуры модели
 class ImprovedModel(nn.Module):
     def __init__(self, num_classes=23):
@@ -20,16 +23,16 @@ class ImprovedModel(nn.Module):
     def forward(self, x):
         return self.base_model(x)
 
-# Загрузка всей модели
+# Загрузка модели
 try:
-    improved_model = torch.load('improved_model_full.pth', map_location=torch.device('cpu'))
+    improved_model = torch.load(MODEL_PATH, map_location=torch.device('cpu'))
     improved_model.eval()  # Перевод модели в режим оценки
     st.write("Model loaded successfully!")
 except FileNotFoundError:
-    st.write("Model file not found. Please ensure 'improved_model_full.pth' is in the correct directory.")
+    st.error(f"Model file not found. Please ensure the file '{MODEL_PATH}' exists in the correct directory.")
     st.stop()
 except Exception as e:
-    st.write(f"Error loading model: {e}")
+    st.error(f"Error loading model: {e}")
     st.stop()
 
 # Определение трансформаций для входных изображений
@@ -75,4 +78,4 @@ if uploaded_file is not None:
         for i in range(3):
             st.write(f"{breeds[top_indices[i]]}: {top_probs[i].item() * 100:.2f}%")
     except Exception as e:
-        st.write(f"Error during prediction: {e}")
+        st.error(f"Error during prediction: {e}")
