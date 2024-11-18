@@ -7,7 +7,7 @@ import torch.nn as nn
 
 # Воссоздание архитектуры модели
 def create_model():
-    model = models.resnet18(pretrained=False)  # Используем ResNet18 без предобученных весов
+    model = models.resnet18(pretrained=True)  # Используем ResNet18 без предобученных весов
     model.fc = nn.Sequential(
         nn.Linear(model.fc.in_features, 512),  # Промежуточный слой
         nn.ReLU(),
