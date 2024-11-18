@@ -15,7 +15,7 @@ improved_model.fc = nn.Sequential(
 )
 
 # Загрузка сохранённых весов
-improved_model.load_state_dict(torch.load('C:\Users\yzhet\OneDrive\Рабочий стол\Final_AML\improved_model.pth', map_location=torch.device('cpu')))
+improved_model.load_state_dict(torch.load('improved_model.pth', map_location=torch.device('cpu')))
 improved_model.eval()  # Перевод в режим оценки
 
 # Трансформация изображений
