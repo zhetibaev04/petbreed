@@ -6,7 +6,7 @@ from PIL import Image
 import torch.nn as nn
 
 # Воссоздание архитектуры модели
-improved_model = models.resnet18(pretrained=False)
+improved_model = models.resnet18(pretrained=True)
 improved_model.fc = nn.Sequential(
     nn.Linear(improved_model.fc.in_features, 512),
     nn.ReLU(),
