@@ -6,7 +6,7 @@ from PIL import Image
 import torch.nn as nn
 
 # Воссоздание архитектуры модели
-improved_model = models.resnet18(pretrained=False)
+improved_model = models.resnet18(pretrained=True)
 improved_model.fc = nn.Sequential(
     nn.Linear(improved_model.fc.in_features, 512),
     nn.ReLU(),
@@ -15,7 +15,7 @@ improved_model.fc = nn.Sequential(
 )
 
 # Загрузка сохранённых весов
-improved_model.load_state_dict(torch.load('C:\Users\yzhet\OneDrive\Рабочий стол\Final_AML\improved_model.pth', map_location=torch.device('cpu')))
+improved_model.load_state_dict(torch.load('improved_model_full.pth', map_location=torch.device('cpu')))
 improved_model.eval()  # Перевод в режим оценки
 
 # Трансформация изображений
